@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 
+
+
 namespace ProyectoGrafos
 {
     public partial class Grafos : Form
@@ -20,244 +22,50 @@ namespace ProyectoGrafos
 
         private void button1_Click(object sender, EventArgs e)
         {
+            {
+                StringBuilder grafo = new StringBuilder();
+                grafo.AppendLine("digraph A{");
+                foreach (Control c in this.Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        if (string.IsNullOrEmpty(c.Text))
+                        {
+                            MessageBox.Show("Ingrese todos los valores.", "Error de validación",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                        else
+                        {
+                            byte Valor;
+                            byte.TryParse(c.Text, out Valor);
+                            if (Valor.Equals(1))
+                                grafo.AppendLine(c.Name.Substring(0, 1) + " -> " + c.Name.Substring(1, 1));
+                            else
+                                grafo.AppendLine();
+                        }
+                    }
+                }
+                grafo.AppendLine("}");
+                File.WriteAllText(@"grafo.dot", grafo.ToString());
 
-            string fileName = "grafo.dot";
-            FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter grafo = new StreamWriter(stream);
+                #region Guardar y Crear la imagen
 
-            grafo.WriteLine("digraph A {");
-            /*A*/
-            if (Convert.ToInt16(AA.Text).Equals(1))
-            {
-                grafo.WriteLine("A -> A;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(AB.Text).Equals(1))
-            {
-                grafo.WriteLine("A -> B;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(AC.Text).Equals(1))
-            {
+                saveFileDialog1.Filter = "Archivos de imagen (*.png)|*.png";
 
-                grafo.WriteLine("A -> C;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(AD.Text).Equals(1))
-            {
+                saveFileDialog1.Title = "Nombre para el archivo";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    ProcessStartInfo Grafo = new ProcessStartInfo(@"dot.exe");
+                    Grafo.Arguments = "grafo.dot -o " + saveFileDialog1.FileName + " -Tpng -Grankdir=LR";
+                    Grafo.UseShellExecute = true;
+                    Process.Start(Grafo);
+                }
 
-                grafo.WriteLine("A -> D;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(AE.Text).Equals(1))
-            {
-
-                grafo.WriteLine("A -> E;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            /*B*/
-            if (Convert.ToInt16(BA.Text).Equals(1))
-            {
-                grafo.WriteLine("B -> A;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(BB.Text).Equals(1))
-            {
-                grafo.WriteLine("B -> B ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(BC.Text).Equals(1))
-            {
-
-                grafo.WriteLine("B -> C ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(BD.Text).Equals(1))
-            {
-
-                grafo.WriteLine("B -> D ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(BE.Text).Equals(1))
-            {
-
-                grafo.WriteLine("B -> E ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            /*C*/
-            if (Convert.ToInt16(CA.Text).Equals(1))
-            {
-                grafo.WriteLine("C -> A;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(CB.Text).Equals(1))
-            {
-                grafo.WriteLine("C -> B ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(CC.Text).Equals(1))
-            {
-
-                grafo.WriteLine("C -> C ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(CD.Text).Equals(1))
-            {
-
-                grafo.WriteLine("C -> D ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(CE.Text).Equals(1))
-            {
-
-                grafo.WriteLine("C -> E ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            /*D*/
-            if (Convert.ToInt16(DA.Text).Equals(1))
-            {
-                grafo.WriteLine("D -> A;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(DB.Text).Equals(1))
-            {
-                grafo.WriteLine("D -> B ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(DC.Text).Equals(1))
-            {
-
-                grafo.WriteLine("D -> C ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(DD.Text).Equals(1))
-            {
-
-                grafo.WriteLine("D -> D ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(DE.Text).Equals(1))
-            {
-
-                grafo.WriteLine("D -> E ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            /*E*/
-            if (Convert.ToInt16(EA.Text).Equals(1))
-            {
-                grafo.WriteLine("E -> A;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(EB.Text).Equals(1))
-            {
-                grafo.WriteLine("E -> B ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(EC.Text).Equals(1))
-            {
-
-                grafo.WriteLine("E -> C ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(ED.Text).Equals(1))
-            {
-
-                grafo.WriteLine("E -> D ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            if (Convert.ToInt16(EE.Text).Equals(1))
-            {
-
-                grafo.WriteLine("E -> E ;");
-            }
-            else
-            {
-                grafo.WriteLine("");
-            }
-            grafo.WriteLine("}");
-            grafo.Close();
+                #endregion
 
 
-            /**Guardar y Crear la Imagen*/
-           
-                ProcessStartInfo Grafo = new ProcessStartInfo("dot.exe");
-                Grafo.Arguments = "grafo.dot -o grafo.png -Tpng -Grankdir=LR";
-                Grafo.UseShellExecute = true;
-                Process.Start(Grafo);
-            
-            
+            }
         }
     }
 }

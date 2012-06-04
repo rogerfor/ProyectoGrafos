@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.generar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,15 +68,15 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // button1
+            // generar
             // 
-            this.button1.Location = new System.Drawing.Point(114, 213);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Generar Grafo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.generar.Location = new System.Drawing.Point(114, 213);
+            this.generar.Name = "generar";
+            this.generar.Size = new System.Drawing.Size(112, 36);
+            this.generar.TabIndex = 0;
+            this.generar.Text = "Generar Grafo";
+            this.generar.UseVisualStyleBackColor = true;
+            this.generar.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -419,7 +419,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.generar);
             this.Name = "Grafos";
             this.Text = "Grafos";
             this.ResumeLayout(false);
@@ -429,7 +429,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button generar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
