@@ -7,10 +7,12 @@ Ingenieria en Sistemas 5to. Semestre
 
 Programa diseñado para graficar a partir de la matriz de adyacencia.
 
-Hecho con Visual Studio 2010 y C#
+Hecho con Visual Studio 2010 y C# - Liberado bajo GPL V3
 
 Se utilizaron librerias de Graphviz
 
 	-Graphviz liberado bajo Eclipse Public License - v 1.0 
+
+
 
 	
