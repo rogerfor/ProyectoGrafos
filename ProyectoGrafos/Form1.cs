@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,11 +26,11 @@ namespace ProyectoGrafos
             {
                 StringBuilder grafo = new StringBuilder();
                 grafo.AppendLine("digraph A{");
-                foreach (Control c in this.Controls)
+                foreach (Control num in this.Controls)
                 {
-                    if (c is TextBox)
+                    if (num is TextBox)
                     {
-                        if (string.IsNullOrEmpty(c.Text))
+                        if (string.IsNullOrEmpty(num.Text))
                         {
                             MessageBox.Show("Ingrese todos los valores.", "Error de validación",
                                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -38,9 +39,9 @@ namespace ProyectoGrafos
                         else
                         {
                             byte Valor;
-                            byte.TryParse(c.Text, out Valor);
+                            byte.TryParse(num.Text, out Valor);
                             if (Valor.Equals(1))
-                                grafo.AppendLine(c.Name.Substring(0, 1) + " -> " + c.Name.Substring(1, 1));
+                                grafo.AppendLine(num.Name.Substring(0, 1) + " -> " + num.Name.Substring(1, 1));
                             else
                                 grafo.AppendLine();
                         }
@@ -65,6 +66,36 @@ namespace ProyectoGrafos
                 #endregion
 
 
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
+            acerca form = new acerca();
+            form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (Control resetear in this.Controls)
+            {
+
+                if (resetear is TextBox)
+                {
+                    resetear.Text = "0";
+                    this.AA.Focus();
+
+                }
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("¿Esta seguro que desea salir?", "GraphSoft", MessageBoxButtons.YesNo))
+            {
+                this.Close();
             }
         }
     }
