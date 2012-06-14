@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -61,6 +62,11 @@ namespace ProyectoGrafos
                     Grafo.Arguments = "grafo.dot -o " + saveFileDialog1.FileName + " -Tpng -Grankdir=LR";
                     Grafo.UseShellExecute = true;
                     Process.Start(Grafo);
+
+                }
+                {
+                    Thread.Sleep(1000);
+                    pictureBox1.Image = Image.FromFile(saveFileDialog1.FileName);
                 }
 
                 #endregion
@@ -85,6 +91,7 @@ namespace ProyectoGrafos
                 {
                     resetear.Text = "0";
                     this.AA.Focus();
+                    pictureBox1.Image = null;
 
                 }
 
